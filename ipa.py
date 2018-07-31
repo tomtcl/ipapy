@@ -39,13 +39,13 @@ emailPassword = None
 emailHost = None
 
 #判断是否是workspace
-isWorkSpace = False
+isWorkSpace = True
 
 #版本
 tag = "master"
 
 #钥匙链相关
-keychainPath="~/Library/Keychains/login.keychain"
+keychainPath="~/Library/Keychains/login.keychain-db"
 keychainPassword=""
 
 #显示已有的参数
@@ -78,7 +78,7 @@ def setParameter():
         m = hashlib.md5()
         m.update('BossZP')
         tempFinder = m.hexdigest()
-        mainPath = commendPath + 'Documents' + '/' + tempFinder
+        mainPath = commendPath + 'Documents' + '/' + tempFinder + '/' + targetName
     gitPath = raw_input("input gitPath:")
     certificateName = raw_input("input certificateName:")
     firToken = raw_input("input firToken:")
@@ -462,7 +462,7 @@ def main():
     #生成ipa文件
     cerateIPA()
     #上传到fir.im
-    httpAddress = uploadToFir()
+    # httpAddress = uploadToFir()
     #发邮件给测试
     if not isNone(httpAddress):
         sendEmail(httpAddress)
